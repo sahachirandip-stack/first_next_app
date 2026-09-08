@@ -50,7 +50,6 @@ export async function generateMetadata() {
     },
   };
 }
-
 const  AboutPage = async( )=>{
     
   const pages = await getAboutPage();
