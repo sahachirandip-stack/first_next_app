@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const API_URL = process.env.API_URL;
-const PATH_URL = process.env.PATH_URL;
+const API_URL = process.env.WORDPRESS_API_URL;
+const PATH_URL = process.env.API_PATH;
 
 async function getAboutPage() {
   const response = await fetch(
@@ -13,6 +13,7 @@ async function getAboutPage() {
       },
     }
   );
+
   if (!response.ok) {
     throw new Error("Failed to fetch About page");
   }
@@ -72,6 +73,7 @@ const  AboutPage = async( )=>{
                 />
                 
             </div>
+
             <div className="col-lg-6 mt-5 mt-lg-0">
 
                 <span className="text-primary fw-bold">
