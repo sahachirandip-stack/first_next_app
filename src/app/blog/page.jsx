@@ -54,7 +54,7 @@ const BlogPage = async ({ searchParams }) => {
                     post?._embedded?.["wp:featuredmedia"]?.[0]?.alt_text ||
                     post.title.rendered
                   }
-          priority={index === 0}
+              priority={index === 0}
                 />}
 
                 <div className="card-body p-4">
