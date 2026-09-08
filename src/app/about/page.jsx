@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const API_URL = process.env.WORDPRESS_API_URL;
-const PATH_URL = process.env.API_PATH;
+const API_URL = process.env.API_URL;
+const PATH_URL = process.env.PATH_URL;
 
 async function getAboutPage() {
   const response = await fetch(
