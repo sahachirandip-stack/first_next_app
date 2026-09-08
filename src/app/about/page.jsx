@@ -57,8 +57,7 @@ const  AboutPage = async( )=>{
     const about = pages?.acf;
     console.log(about);
     
-    return (
-        
+    return (        
 <section className="section-padding">
 
     <div className="container">
