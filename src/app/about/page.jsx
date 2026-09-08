@@ -13,7 +13,6 @@ async function getAboutPage() {
       },
     }
   );
-
   if (!response.ok) {
     throw new Error("Failed to fetch About page");
   }
