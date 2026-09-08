@@ -9,7 +9,6 @@ const getPosts = async () => {
   );
 
   const posts = await response.json();
-
   return posts;
 };
 export default getPosts;
