@@ -13,8 +13,12 @@ const BlogPage = async ({ searchParams }) => {
   const currentPage = Number(params?.page) || 1;
 
    const response = await fetch(
-    `${API_URL}${PATH_URL}posts?acf_format=standard&page=${currentPage}&per_page=${POST_PER_PAGE}&_embed=&_fields=id,date,title,excerpt,slug,author,featured_media,categories,_links,_embedded,content`
-  );
+    `${API_URL}${PATH_URL}posts?acf_format=standard&page=${currentPage}&per_page=${POST_PER_PAGE}&_embed=&_fields=_embedded,id,date,title,excerpt,slug,_links` 
+  ,{
+    next: {
+      revalidate: 60,
+    },
+  });
 
   const posts = await response.json();
   const totalPages = Number(response.headers.get("X-WP-TotalPages"));
@@ -30,6 +34,7 @@ const BlogPage = async ({ searchParams }) => {
     <section className="section-padding">
       <div className="container">
         <div className="text-center mb-5">
+          <h1>Our Blog</h1>
           <span className="text-primary fw-bold">Latest News</span>
 
           <h2 className="display-6 fw-bold mt-2">From Our Blog</h2>

@@ -3,13 +3,30 @@ import Link from "next/link";
 
 const API_URL = process.env.WORDPRESS_API_URL;
 const PATH_URL = process.env.API_PATH;
-export async function generateMetadata() {
-  const response =await fetch(
-    `${API_URL}${PATH_URL}pages/?acf_format=standard&slug=about&_fields=acf,yoast_head_json`);
-   
+
+async function getAboutPage() {
+  const response = await fetch(
+    `${API_URL}${PATH_URL}pages?acf_format=standard&slug=about&_fields=acf,yoast_head_json`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch About page");
+  }
 
   const pages = await response.json();
-  const seo = pages[0]?.yoast_head_json;
+
+  return pages[0] || null;
+}
+export async function generateMetadata() {
+  
+
+  const pages = await getAboutPage();
+  const seo = pages?.yoast_head_json;
 
   return {
     title: seo?.title,
@@ -35,13 +52,10 @@ export async function generateMetadata() {
 }
 
 const  AboutPage = async( )=>{
-    const response = await fetch(
-        `${API_URL}${PATH_URL}pages/?acf_format=standard&slug=about&_fields=acf,yoast_head_json`
-    );
-    const resData =await response.json();
-    const about = resData?.[0]?.acf;
-    const seo = resData?.[0]?.yoast_head_json;
-    console.log(seo);
+    
+  const pages = await getAboutPage();
+    const about = pages?.acf;
+    console.log(about);
     
     return (
         
