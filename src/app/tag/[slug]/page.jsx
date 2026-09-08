@@ -96,7 +96,7 @@ export default async function TagPage({ params }) {
                   />
 
                   <Link
-                    href={`blog/${post.slug}`}
+                    href={`/blog/${post.slug}`}
                     className="btn btn-outline-primary"
                   >
                     Read Article
