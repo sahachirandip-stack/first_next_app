@@ -73,8 +73,6 @@ const  AboutPage = async( )=>{
                 />
                 
             </div>
-
-
             <div className="col-lg-6 mt-5 mt-lg-0">
 
                 <span className="text-primary fw-bold">
