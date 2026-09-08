@@ -22,34 +22,34 @@ async function getAboutPage() {
 
   return pages[0] || null;
 }
-// export async function generateMetadata() {
+export async function generateMetadata() {
   
 
-//   const pages = await getAboutPage();
-//   const seo = pages?.yoast_head_json;
+  const pages = await getAboutPage();
+  const seo = pages?.yoast_head_json;
 
-//   return {
-//     title: seo?.title,
-//     description: seo?.description,
+  return {
+    title: seo?.title,
+    description: seo?.description,
 
-//     alternates: {
-//       canonical: seo?.canonical,
-//     },
+    alternates: {
+      canonical: seo?.canonical,
+    },
 
-//     openGraph: {
-//       title: seo?.og_title || seo?.title,
-//       type:seo?.og_type, 
-//       description: seo?.og_description || seo?.description,
-//       url: seo?.og_url || seo?.canonical,
-//       images: seo?.og_image?.map((image) => ({
-//         url: image.url,
-//         width: image.width,
-//         height: image.height,
-//         alt: image.alt,
-//       })),
-//     },
-//   };
-// }
+    openGraph: {
+      title: seo?.og_title || seo?.title,
+      type:seo?.og_type, 
+      description: seo?.og_description || seo?.description,
+      url: seo?.og_url || seo?.canonical,
+      images: seo?.og_image?.map((image) => ({
+        url: image.url,
+        width: image.width,
+        height: image.height,
+        alt: image.alt,
+      })),
+    },
+  };
+}
 const  AboutPage = async( )=>{
     
   const pages = await getAboutPage();
