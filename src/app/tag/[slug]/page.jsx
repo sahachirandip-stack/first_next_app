@@ -4,7 +4,6 @@ import Link from "next/link";
 
 const API_URL = process.env.WORDPRESS_API_URL;
 const PATH_URL = process.env.API_PATH;
-const POST_PER_PAGE = process.env.POST_PER_PAGE;
 
 async function getTagId(slug) {
   const response = await fetch(
@@ -31,7 +30,7 @@ async function getPostsByTag(slug) {
   }
 
   const response = await fetch(
-    `${API_URL}${PATH_URL}posts?tags=${tagId}&acf_format=standard&_embed=&_fields=_embedded,id,date,title,excerpt,slug,_links`,
+    `${API_URL}${PATH_URL}posts?tags=${tagId}&_fields=id,date,title,excerpt,slug,featured_image_url`,
     {
       next: { revalidate: 60 },
     }
@@ -70,17 +69,16 @@ export default async function TagPage({ params }) {
           {posts.map((post,index) => (
             <div key={post.id} className="col-lg-4 col-md-6">
               <article className="card blog-card border-0 shadow-sm">
-                {post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url &&
+                {post?.featured_image_url &&
                 <Image
                   width={300}
                   height={250}
-                  src={post?._embedded?.["wp:featuredmedia"]?.[0]?.source_url}
+                  src={post?.featured_image_url}
                   className="card-img-top"
                   alt={
                     post?._embedded?.["wp:featuredmedia"]?.[0]?.alt_text ||
                     post.title.rendered
                   }
-              priority={index === 0}
                 />}
 
                 <div className="card-body p-4">
