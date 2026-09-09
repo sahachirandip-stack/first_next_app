@@ -38,8 +38,8 @@ const PATH_URL = process.env.API_PATH;
                                   }
                                 />)}
                 {categories?.map((category)=>(
-                    <span key={category.id} className="badge text-bg-primary mb-3">
-                        {category.name}
+                    <span key={category.id} className="badge text-bg-warning  mb-3">
+                        <Link href={`/category/${category.slug}`} >{category.name}</Link>
                     </span>
                 ))}
                 

@@ -36,6 +36,13 @@ export async function getPosts(params = "") {
   return fetchAPI(`posts${params}`);
 }
 
+export async function getcategoryId(slug) {
+  const categories = await fetchAPI(
+    `categories?slug=${encodeURIComponent(slug)}`
+  );
+
+  return categories[0] || null;
+}
 // Single post
 export async function getPost(slug) {
   const posts = await fetchAPI(
